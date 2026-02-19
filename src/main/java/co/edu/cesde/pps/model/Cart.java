@@ -95,4 +95,8 @@ public class Cart {
                 ", total=" + calculateTotal() +
                 '}';
     }
+
+    public boolean isGuestCart() {
+        return user == null;
+    }
 }
