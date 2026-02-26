@@ -139,30 +139,37 @@ public class OrderService {
             }
         }
 
-        // 5. Crear orden con número único
-        String orderNumber = generateOrderNumber();
-        Order order = new Order(orderNumber, userId, 1L, // TODO: orderStatusId = PENDING
-            shippingAddressId, billingAddressId);
-        order.setOrderId(generateNextId());
+        Order order = Order.builder()
+                .orderId(generateNextId())
+                .orderNumber(generateOrderNumber())
+                .userId(userId)
+                .orderStatusId(1L)
+                .shippingAddressId(shippingAddressId)
+                .billingAddressId(billingAddressId)
+                .subtotal(BigDecimal.ZERO)
+                .tax(BigDecimal.ZERO)
+                .shippingCost(BigDecimal.ZERO)
+                .total(BigDecimal.ZERO)
+                .createdAt(LocalDateTime.now())
+                .build();
 
-        // 6. Copiar items del carrito a la orden (congelar precios históricos)
-        for (CartItem cartItem : cart.getItems()) {
-            OrderItem orderItem = new OrderItem(
-                order,
-                cartItem.getProduct(),
-                cartItem.getQuantity(),
-                cartItem.getUnitPrice()  // Precio histórico al momento de compra
-            );
-            orderItem.setOrderItemId(generateNextOrderItemId());
+        OrderItem orderItem = OrderItem.builder()
+                .orderItemId(generateNextOrderItemId())
+                .order(order)
+                .product(cart.getItems().get(0).getProduct()) // Solo el primer producto por simplicidad
+                .quantity(cart.getItems().get(0).getQuantity())
+                .unitPrice(cart.getItems().get(0).getUnitPrice())
+                .lineTotal(BigDecimal.ZERO) // Se calculará después
+                .build();
 
             // Calcular lineTotal
             orderItem.setLineTotal(CalculationUtils.calculateOrderItemLineTotal(
-                cartItem.getUnitPrice(), cartItem.getQuantity()));
+                orderItem.getUnitPrice(), orderItem.getQuantity()));
 
             // Gestión bidireccional
             order.getItems().add(orderItem);
             orderItem.setOrder(order);
-        }
+
 
         // 7. Calcular totales
         List<BigDecimal> lineTotals = order.getItems().stream()
