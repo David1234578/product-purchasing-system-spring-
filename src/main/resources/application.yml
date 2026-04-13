@@ -1,11 +1,13 @@
 spring:
   application:
-    name: product-purchase-service
+    name: product-purchasing-system
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:pps_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: ${DB_USER:root}
     password: ${DB_PASSWORD:David0727}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
   jpa:
     hibernate:
       ddl-auto: ${DB_DDL_AUTO:update}
@@ -17,4 +19,10 @@ spring:
         use_sql_comments: true
   sql:
     init:
-        mode: never
+      mode: never
+
+logging:
+  level:
+    co.edu.cesde.pps: ${LOG_LEVEL:DEBUG}
+    org.hibernate.SQL: ${LOG_SQL_LEVEL:DEBUG}
+    org.hibernate.orm.jdbc.bind: ${LOG_SQL_BIND_LEVEL:TRACE}

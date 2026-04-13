@@ -14,45 +14,45 @@ USE pps_db;
 -- Datos: roles
 -- ============================================
 INSERT INTO roles (role_id, name, description) VALUES
-(1, 'ADMIN', 'Administrator with full access'),
-(2, 'CUSTOMER', 'Regular customer user'),
-(3, 'MANAGER', 'Store manager with elevated privileges')
+                                                   (1, 'ADMIN', 'Administrator with full access'),
+                                                   (2, 'CUSTOMER', 'Regular customer user'),
+                                                   (3, 'MANAGER', 'Store manager with elevated privileges')
 ON DUPLICATE KEY UPDATE description=VALUES(description);
 
 -- ============================================
 -- Datos: order_statuses
 -- ============================================
 INSERT INTO order_statuses (order_status_id, name, description) VALUES
-(1, 'PENDING', 'Order created, awaiting payment'),
-(2, 'CONFIRMED', 'Payment confirmed, processing order'),
-(3, 'PROCESSING', 'Order is being prepared'),
-(4, 'SHIPPED', 'Order has been shipped'),
-(5, 'DELIVERED', 'Order delivered successfully'),
-(6, 'CANCELLED', 'Order was cancelled'),
-(7, 'REFUNDED', 'Order was refunded')
+                                                                    (1, 'PENDING', 'Order created, awaiting payment'),
+                                                                    (2, 'CONFIRMED', 'Payment confirmed, processing order'),
+                                                                    (3, 'PROCESSING', 'Order is being prepared'),
+                                                                    (4, 'SHIPPED', 'Order has been shipped'),
+                                                                    (5, 'DELIVERED', 'Order delivered successfully'),
+                                                                    (6, 'CANCELLED', 'Order was cancelled'),
+                                                                    (7, 'REFUNDED', 'Order was refunded')
 ON DUPLICATE KEY UPDATE description=VALUES(description);
 
 -- ============================================
 -- Datos: payment_methods
 -- ============================================
 INSERT INTO payment_methods (payment_method_id, name, description) VALUES
-(1, 'CREDIT_CARD', 'Credit Card Payment'),
-(2, 'DEBIT_CARD', 'Debit Card Payment'),
-(3, 'PAYPAL', 'PayPal Payment'),
-(4, 'BANK_TRANSFER', 'Bank Transfer'),
-(5, 'CASH_ON_DELIVERY', 'Cash on Delivery')
+                                                                       (1, 'CREDIT_CARD', 'Credit Card Payment'),
+                                                                       (2, 'DEBIT_CARD', 'Debit Card Payment'),
+                                                                       (3, 'PAYPAL', 'PayPal Payment'),
+                                                                       (4, 'BANK_TRANSFER', 'Bank Transfer'),
+                                                                       (5, 'CASH_ON_DELIVERY', 'Cash on Delivery')
 ON DUPLICATE KEY UPDATE description=VALUES(description);
 
 -- ============================================
 -- Datos: payment_statuses
 -- ============================================
 INSERT INTO payment_statuses (payment_status_id, name, description) VALUES
-(1, 'PENDING', 'Payment pending'),
-(2, 'PROCESSING', 'Payment being processed'),
-(3, 'COMPLETED', 'Payment completed successfully'),
-(4, 'FAILED', 'Payment failed'),
-(5, 'REFUNDED', 'Payment refunded'),
-(6, 'CANCELLED', 'Payment cancelled')
+                                                                        (1, 'PENDING', 'Payment pending'),
+                                                                        (2, 'PROCESSING', 'Payment being processed'),
+                                                                        (3, 'COMPLETED', 'Payment completed successfully'),
+                                                                        (4, 'FAILED', 'Payment failed'),
+                                                                        (5, 'REFUNDED', 'Payment refunded'),
+                                                                        (6, 'CANCELLED', 'Payment cancelled')
 ON DUPLICATE KEY UPDATE description=VALUES(description);
 
 -- ============================================
@@ -60,32 +60,32 @@ ON DUPLICATE KEY UPDATE description=VALUES(description);
 -- ============================================
 -- Categorías raíz
 INSERT INTO categories (category_id, parent_id, name, slug) VALUES
-(1, NULL, 'Electronics', 'electronics'),
-(2, NULL, 'Clothing', 'clothing'),
-(3, NULL, 'Books', 'books'),
-(4, NULL, 'Home & Garden', 'home-garden')
+                                                                (1, NULL, 'Electronics', 'electronics'),
+                                                                (2, NULL, 'Clothing', 'clothing'),
+                                                                (3, NULL, 'Books', 'books'),
+                                                                (4, NULL, 'Home & Garden', 'home-garden')
 ON DUPLICATE KEY UPDATE name=VALUES(name);
 
 -- Subcategorías de Electronics
 INSERT INTO categories (category_id, parent_id, name, slug) VALUES
-(11, 1, 'Computers', 'computers'),
-(12, 1, 'Smartphones', 'smartphones'),
-(13, 1, 'Audio', 'audio'),
-(14, 1, 'Cameras', 'cameras')
+                                                                (11, 1, 'Computers', 'computers'),
+                                                                (12, 1, 'Smartphones', 'smartphones'),
+                                                                (13, 1, 'Audio', 'audio'),
+                                                                (14, 1, 'Cameras', 'cameras')
 ON DUPLICATE KEY UPDATE name=VALUES(name);
 
 -- Subcategorías de Clothing
 INSERT INTO categories (category_id, parent_id, name, slug) VALUES
-(21, 2, 'Men', 'men-clothing'),
-(22, 2, 'Women', 'women-clothing'),
-(23, 2, 'Kids', 'kids-clothing')
+                                                                (21, 2, 'Men', 'men-clothing'),
+                                                                (22, 2, 'Women', 'women-clothing'),
+                                                                (23, 2, 'Kids', 'kids-clothing')
 ON DUPLICATE KEY UPDATE name=VALUES(name);
 
 -- Subcategorías de Books
 INSERT INTO categories (category_id, parent_id, name, slug) VALUES
-(31, 3, 'Fiction', 'fiction'),
-(32, 3, 'Non-Fiction', 'non-fiction'),
-(33, 3, 'Technical', 'technical-books')
+                                                                (31, 3, 'Fiction', 'fiction'),
+                                                                (32, 3, 'Non-Fiction', 'non-fiction'),
+                                                                (33, 3, 'Technical', 'technical-books')
 ON DUPLICATE KEY UPDATE name=VALUES(name);
 
 -- ============================================
@@ -93,35 +93,35 @@ ON DUPLICATE KEY UPDATE name=VALUES(name);
 -- ============================================
 -- Productos de Electronics > Computers
 INSERT INTO products (product_id, category_id, sku, name, description, image, price, stock_qty, is_active) VALUES
-(1, 11, 'COMP-LAP-001', 'Dell XPS 13 Laptop', 'High-performance ultrabook with Intel i7', 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80', 1299.99, 15, TRUE),
-(2, 11, 'COMP-LAP-002', 'MacBook Air M2', 'Apple MacBook Air with M2 chip', 'https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1200&q=80', 1199.99, 10, TRUE),
-(3, 11, 'COMP-DES-001', 'Gaming Desktop PC', 'High-end gaming desktop with RTX 4080', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80', 2499.99, 5, TRUE)
+                                                                                                               (1, 11, 'COMP-LAP-001', 'Dell XPS 13 Laptop', 'High-performance ultrabook with Intel i7', 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80', 1299.99, 15, TRUE),
+                                                                                                               (2, 11, 'COMP-LAP-002', 'MacBook Air M2', 'Apple MacBook Air with M2 chip', 'https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1200&q=80', 1199.99, 10, TRUE),
+                                                                                                               (3, 11, 'COMP-DES-001', 'Gaming Desktop PC', 'High-end gaming desktop with RTX 4080', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80', 2499.99, 5, TRUE)
 ON DUPLICATE KEY UPDATE image=VALUES(image), price=VALUES(price), stock_qty=VALUES(stock_qty);
 
 -- Productos de Electronics > Smartphones
 INSERT INTO products (product_id, category_id, sku, name, description, image, price, stock_qty, is_active) VALUES
-(4, 12, 'PHONE-IP-001', 'iPhone 15 Pro', 'Latest Apple iPhone with A17 chip', 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80', 999.99, 20, TRUE),
-(5, 12, 'PHONE-SAM-001', 'Samsung Galaxy S24', 'Flagship Samsung smartphone', 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1200&q=80', 899.99, 25, TRUE),
-(6, 12, 'PHONE-PIX-001', 'Google Pixel 8', 'Google Pixel with advanced AI', 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1200&q=80', 699.99, 15, TRUE)
+                                                                                                               (4, 12, 'PHONE-IP-001', 'iPhone 15 Pro', 'Latest Apple iPhone with A17 chip', 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80', 999.99, 20, TRUE),
+                                                                                                               (5, 12, 'PHONE-SAM-001', 'Samsung Galaxy S24', 'Flagship Samsung smartphone', 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1200&q=80', 899.99, 25, TRUE),
+                                                                                                               (6, 12, 'PHONE-PIX-001', 'Google Pixel 8', 'Google Pixel with advanced AI', 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1200&q=80', 699.99, 15, TRUE)
 ON DUPLICATE KEY UPDATE image=VALUES(image), price=VALUES(price), stock_qty=VALUES(stock_qty);
 
 -- Productos de Electronics > Audio
 INSERT INTO products (product_id, category_id, sku, name, description, image, price, stock_qty, is_active) VALUES
-(7, 13, 'AUD-HEAD-001', 'Sony WH-1000XM5', 'Noise-canceling wireless headphones', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80', 399.99, 30, TRUE),
-(8, 13, 'AUD-SPEAK-001', 'JBL Flip 6', 'Portable Bluetooth speaker', 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=80', 129.99, 50, TRUE)
+                                                                                                               (7, 13, 'AUD-HEAD-001', 'Sony WH-1000XM5', 'Noise-canceling wireless headphones', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80', 399.99, 30, TRUE),
+                                                                                                               (8, 13, 'AUD-SPEAK-001', 'JBL Flip 6', 'Portable Bluetooth speaker', 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=80', 129.99, 50, TRUE)
 ON DUPLICATE KEY UPDATE image=VALUES(image), price=VALUES(price), stock_qty=VALUES(stock_qty);
 
 -- Productos de Clothing > Men
 INSERT INTO products (product_id, category_id, sku, name, description, image, price, stock_qty, is_active) VALUES
-(9, 21, 'CLOTH-MEN-001', 'Classic Denim Jeans', 'Comfortable fit denim jeans', 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1200&q=80', 59.99, 100, TRUE),
-(10, 21, 'CLOTH-MEN-002', 'Cotton T-Shirt', 'Basic cotton t-shirt', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80', 19.99, 200, TRUE)
+                                                                                                               (9, 21, 'CLOTH-MEN-001', 'Classic Denim Jeans', 'Comfortable fit denim jeans', 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1200&q=80', 59.99, 100, TRUE),
+                                                                                                               (10, 21, 'CLOTH-MEN-002', 'Cotton T-Shirt', 'Basic cotton t-shirt', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80', 19.99, 200, TRUE)
 ON DUPLICATE KEY UPDATE image=VALUES(image), price=VALUES(price), stock_qty=VALUES(stock_qty);
 
 -- Productos de Books > Technical
 INSERT INTO products (product_id, category_id, sku, name, description, image, price, stock_qty, is_active) VALUES
-(11, 33, 'BOOK-TECH-001', 'Clean Code', 'Robert C. Martin - Programming best practices', 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80', 44.99, 50, TRUE),
-(12, 33, 'BOOK-TECH-002', 'Design Patterns', 'Gang of Four - Essential design patterns', 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80', 54.99, 40, TRUE),
-(13, 33, 'BOOK-TECH-003', 'Java Persistence with Hibernate', 'JPA and Hibernate guide', 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=80', 49.99, 30, TRUE)
+                                                                                                               (11, 33, 'BOOK-TECH-001', 'Clean Code', 'Robert C. Martin - Programming best practices', 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80', 44.99, 50, TRUE),
+                                                                                                               (12, 33, 'BOOK-TECH-002', 'Design Patterns', 'Gang of Four - Essential design patterns', 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80', 54.99, 40, TRUE),
+                                                                                                               (13, 33, 'BOOK-TECH-003', 'Java Persistence with Hibernate', 'JPA and Hibernate guide', 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=80', 49.99, 30, TRUE)
 ON DUPLICATE KEY UPDATE image=VALUES(image), price=VALUES(price), stock_qty=VALUES(stock_qty);
 
 -- ============================================
@@ -130,20 +130,20 @@ ON DUPLICATE KEY UPDATE image=VALUES(image), price=VALUES(price), stock_qty=VALU
 -- NOTA: Los passwords aquí son hashes de ejemplo
 -- En producción usar bcrypt u otro algoritmo seguro
 INSERT INTO users (user_id, role_id, email, password_hash, first_name, last_name, phone, status) VALUES
-(1, 1, 'admin@pps.com', '$2a$10$example.hash.admin', 'Admin', 'User', '555-0001', 'ACTIVE'),
-(2, 2, 'john.doe@email.com', '$2a$10$example.hash.john', 'John', 'Doe', '555-0100', 'ACTIVE'),
-(3, 2, 'jane.smith@email.com', '$2a$10$example.hash.jane', 'Jane', 'Smith', '555-0101', 'ACTIVE'),
-(4, 3, 'manager@pps.com', '$2a$10$example.hash.manager', 'Store', 'Manager', '555-0002', 'ACTIVE')
+                                                                                                     (1, 1, 'admin@pps.com', '$2a$10$example.hash.admin', 'Admin', 'User', '555-0001', 'ACTIVE'),
+                                                                                                     (2, 2, 'john.doe@email.com', '$2a$10$example.hash.john', 'John', 'Doe', '555-0100', 'ACTIVE'),
+                                                                                                     (3, 2, 'jane.smith@email.com', '$2a$10$example.hash.jane', 'Jane', 'Smith', '555-0101', 'ACTIVE'),
+                                                                                                     (4, 3, 'manager@pps.com', '$2a$10$example.hash.manager', 'Store', 'Manager', '555-0002', 'ACTIVE')
 ON DUPLICATE KEY UPDATE email=VALUES(email);
 
 -- ============================================
 -- Datos: addresses (Ejemplos)
 -- ============================================
 INSERT INTO addresses (user_id, type, line1, line2, city, state, country, postal_code, is_default) VALUES
-(2, 'SHIPPING', '123 Main Street', 'Apt 4B', 'New York', 'NY', 'USA', '10001', TRUE),
-(2, 'BILLING', '123 Main Street', 'Apt 4B', 'New York', 'NY', 'USA', '10001', TRUE),
-(3, 'SHIPPING', '456 Oak Avenue', NULL, 'Los Angeles', 'CA', 'USA', '90001', TRUE),
-(3, 'BILLING', '456 Oak Avenue', NULL, 'Los Angeles', 'CA', 'USA', '90001', TRUE)
+                                                                                                       (2, 'SHIPPING', '123 Main Street', 'Apt 4B', 'New York', 'NY', 'USA', '10001', TRUE),
+                                                                                                       (2, 'BILLING', '123 Main Street', 'Apt 4B', 'New York', 'NY', 'USA', '10001', TRUE),
+                                                                                                       (3, 'SHIPPING', '456 Oak Avenue', NULL, 'Los Angeles', 'CA', 'USA', '90001', TRUE),
+                                                                                                       (3, 'BILLING', '456 Oak Avenue', NULL, 'Los Angeles', 'CA', 'USA', '90001', TRUE)
 ON DUPLICATE KEY UPDATE line1=VALUES(line1);
 
 -- ============================================
